@@ -19,6 +19,13 @@ Route::get('/', function () {
 
 Route::view('kamar','kamar')->name('kamar');
 
-Route::view('admin','dashboard')->name('dashboard');
-Route::view('admin/admin','admin.index') ->name('admin.index');
-Route::view('admin/login','auth.login') ->name('admin.login');
+Route::view( config('admin.path').'/login','auth.login') ->name('admin.login');
+
+Route::group([
+    'prefix'=>config('admin.path'),
+    'middleware'=>['auth:admin'], 
+], function(){
+    Route::view('/','dashboard')->name('dashboard');
+    Route::view('admin','admin.index') ->name('admin.index');
+});   
+

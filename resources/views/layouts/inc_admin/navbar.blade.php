@@ -12,16 +12,23 @@
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          username <i class="fas fa-caret-down"></i>
+          {{ Auth::user()->nama }} <i class="fas fa-caret-down"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <a href="#" class="dropdown-item">
             <i class="fas fa-user mr-2"></i> My Akun
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
+
+          <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"class="dropdown-item">
             <i class="fas fa-sign-out-alt mr-2"></i> Logout
           </a>
+
+          <form action="{{ route('admin.logout') }}" id="logout-form" method="post">
+            @csrf 
+          </form>
+
+
         </div>
       </li>
     </ul>

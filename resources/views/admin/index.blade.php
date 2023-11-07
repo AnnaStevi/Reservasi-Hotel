@@ -18,7 +18,7 @@
             </tr>
          </thead>    
          <tbody>
-          <?php $no = 1; ?>
+          <?php $no = $data->firstItem(); ?>
             @foreach ( $data as $row )
             <tr>
                 <td>{{ $no++ }}</td>
@@ -31,6 +31,9 @@
     </table>
 </div>
 
+<div class="card-body pb-0">
+    {{ $data->links('page') }}
 </div>
 
+</div>
 @endsection

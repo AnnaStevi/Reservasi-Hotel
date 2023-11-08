@@ -7,8 +7,10 @@
 @section('content')
 
 <div class="card">
-    <div class="card-body p-0">
-        <table class="table table-hover table-striped">
+    <div class="card-header">
+     <x-search />
+</div>
+   <x-card-table>
           <thead>
              <tr>
                 <th>No.</th>
@@ -28,11 +30,10 @@
             </tr>
             @endforeach
         </tbody>    
-    </table>
-</div>
+</x-card-table>
 
 <div class="card-body pb-0">
-    {{ $data->links('page') }}
+    {{ $data->appends(['search' => request()->search ])->links('page') }}
 </div>
 
 </div>

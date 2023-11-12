@@ -8,6 +8,7 @@
 
 <div class="card">
     <div class="card-header">
+     <x-btn-create  :link="route('admin.create')" />
      <x-search />
 </div>
    <x-card-table>

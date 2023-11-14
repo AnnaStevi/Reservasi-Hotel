@@ -68,8 +68,8 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        return abort(404);
+   }
 
     /**
      * Show the form for editing the specified resource.
@@ -77,9 +77,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Admin $admin)
     {
-        //
+        return view('admin.edit',['row'=>$admin]);
     }
 
     /**

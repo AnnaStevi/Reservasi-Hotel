@@ -44,7 +44,20 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nama_lengkap' => 'required',
+            'username' => 'required|alpha_dash|unique:admins',
+            'password' => 'required|min:4|confirmed'
+        ]);
+
+        Admin::create([
+            'nama' =>$request->nama_lengkap,
+            'username' =>$request->username,
+            'password' =>bcrypt($request->password),
+            'role' =>'resepsionis',
+        ]);
+
+        return redirect()->route('admin.index')->with('status', 'store');
     }
 
     /**

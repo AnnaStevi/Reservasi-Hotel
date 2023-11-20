@@ -64,7 +64,7 @@
   </footer>
 </div>
 <!-- ./wrapper -->
-
+@yield('modal')
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
@@ -73,5 +73,6 @@
 <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/adminlte/dist/js/adminlte.min.js"></script>
+@stack('js')
 </body>
 </html>

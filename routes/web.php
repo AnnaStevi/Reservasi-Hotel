@@ -30,6 +30,9 @@ Route::group([
     Route::post('logout','LoginAdminController@logout')->name('admin.logout');
 
     Route::view('/','dashboard')->name('dashboard');
+    
+    Route::get('/akun','AdminController@akun')->name('admin.akun');
+    Route::put('/akun','AdminController@updateAkun');
 
     Route::group(['middleware'=>['can:role, "admin"']], function(){
     Route::resource('admin','AdminController');

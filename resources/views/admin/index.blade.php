@@ -14,8 +14,8 @@
         <div class="col">
         <x-btn-create :link="route('admin.create')" />
     </div>
-    <div class="col">
- <x-search />
+</div class="col">
+<x-search />
 </div>
 </div>
 </div>

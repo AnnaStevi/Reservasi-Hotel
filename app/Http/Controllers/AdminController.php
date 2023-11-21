@@ -108,7 +108,7 @@ if ($request->password){
         'nama'=>$request->nama_lengkap,
         'username'=>$request->username,
     ];
-}
+} 
 
 $admin->update($arr);
 
@@ -135,8 +135,31 @@ return redirect()->route('admin.index')->with('status', 'update');
 
     }
 
-    public function updateAkun()
+    public function updateAkun(Request $request)
     {
+        $admin = Auth::user();
 
+        $request->validate([
+            'nama_lengkap' => 'required',
+            'username' => "required|alpha_dash|unique:admins,username,{$admin->id}",
+            'password' => 'nullable|min:4|confirmed'
+        ]);
+
+if ($request->password){
+    $arr = [
+        'nama'=>$request->nama_lengkap,
+        'username'=>$request->username,
+        'password'=>bcrypt($request->password),
+    ];
+}else {
+    $arr = [
+        'nama'=>$request->nama_lengkap,
+        'username'=>$request->username,
+    ];
+}
+
+$admin->update($arr);
+
+return back()->with('status', 'update');
     }
 }

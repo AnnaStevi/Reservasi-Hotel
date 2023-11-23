@@ -50,6 +50,12 @@ class KamarController extends Controller
             'harga'=>'required',
             'deskripsi'=>'required|min:10'
         ]);
+
+
+        $ext = $request->foto->getClientOriginalExtension();
+        $filename = rand(9,999).'-'.time().'-'.$ext;
+        $request->foto->move('images/kamar/',$filename);
+   
     }
 
     /**

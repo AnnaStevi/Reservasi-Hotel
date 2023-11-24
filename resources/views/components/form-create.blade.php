@@ -8,7 +8,7 @@
     </div>
     <div class="card-footer text-right">
         <button class="btn btn-primary" type="submit">
-          <i class="fas fa-database"></i> Simpan
+           <i class="fas fa-database"></i> Simpan
         </button>
     </div>
 </form>

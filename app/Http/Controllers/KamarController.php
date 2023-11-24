@@ -44,18 +44,26 @@ class KamarController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_kamar'=>'required|min:3',
-            'foto'=>'required|image|mimes:png,jpg,jpeg|dimensions:min_width=1000,min_height=500|between:100,1000',
-            'jumlah'=>'required',
-            'harga'=>'required',
-            'deskripsi'=>'required|min:10'
+            'nama_kamar' => 'required|min:3',
+            'foto_kamar' => 'required|image|mimes:png,jpg,jpeg',
+            'jum_kamar' => 'required',
+            'harga_kamar' => 'required',
+            'deskripsi_kamar' => 'required|min:10'
         ]);
 
+        $ext = $request->foto_kamar->getClientOriginalExtension();
+        $filename = rand(9,999).'_'.time().'.'.$ext;
+        $request->foto_kamar->move('images/kamar', $filename);
 
-        $ext = $request->foto->getClientOriginalExtension();
-        $filename = rand(9,999).'-'.time().'-'.$ext;
-        $request->foto->move('images/kamar/',$filename);
-   
+        Kamar::create([
+            'nama_kamar' => $request->nama_kamar,
+            'foto_kamar' => $filename,
+            'jum_kamar' => $request->jum_kamar,
+            'harga_kamar' => $request->harga_kamar,
+            'deskripsi_kamar' => $request->deskripsi_kamar
+        ]);
+
+        return redirect()->route('kamar.index')->with('status','store');
     }
 
     /**

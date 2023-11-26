@@ -1,7 +1,7 @@
 @props(['label','name','type'=>'text','value'=>''])
 <div class="form-group">
      <label><?= $label ?></label>
-     <input type="{{ $type }}"
+     <textarea type="{{ $type }}"
      name="{{ $name }}"
      class="form-control{{ $errors->has($name) ? 'is-invalid' : ''}}">{{ old($name,$value) }}</textarea>
      @error($name)
